@@ -193,6 +193,7 @@ awk '$3 ~ /multiple|Position/' joined_maize_snp_and_genotypes.txt > maize/maize_
 #####Final inspection  
 
 Finally, I did a quick inspection of all the 22 files generated for teosinte.
+
 ```
 for i in {1..10}; do head -n 3 maize/maize_chr"$i"_increasing.txt | cut -f 1-7 | column -t; done
 ```
@@ -216,9 +217,11 @@ head -n 3 maize/maize_snp_with_unknown_position.txt | cut -f 1-7 | column -t
 Just like for maize, I filtered out the three groups of interest in teosinte, transposed, sorted and inspected all the files.
 
 ```
-awk -F "\t" '$3 ~ /ZMPBA|ZMPIL|ZMPJA|Group/' fang_et_al_genotypes.txt | cut -f 1,4-986 > teosinte_genotypes.txt```
+awk -F "\t" '$3 ~ /ZMPBA|ZMPIL|ZMPJA|Group/' fang_et_al_genotypes.txt | cut -f 1,4-986 > teosinte_genotypes.txt
+```
 
-```awk -f transpose.awk teosinte_genotypes.txt > transposed_teosinte_genotypes.txt
+```
+awk -f transpose.awk teosinte_genotypes.txt > transposed_teosinte_genotypes.txt
 ```
 
 ```
@@ -230,14 +233,17 @@ head transposed_teosinte_genotypes.txt | cut -f 1-10 | column -t
 ```
 
 Below are the code lines for inspection
+
 ```
 head teosinte_genotypes.txt | awk -F "\t" '{print NF; exit}
-'```
+```
 
-```tail teosinte_genotypes.txt | awk -F "\t" '{print NF; exit}
-'```
+```
+tail teosinte_genotypes.txt | awk -F "\t" '{print NF; exit}
+```
 
-```cut -f 3 maize_genotypes.txt | sort | uniq -c
+```
+cut -f 3 maize_genotypes.txt | sort | uniq -c
 ```
 
 #####Merging the files  
@@ -257,7 +263,8 @@ awk '$3 !~ /unknown|multiple/' joined_teosinte_snp_and_genotypes.txt > joined_te
 #####Subsetting files per chromosome and position
 Afterwards, I created a directory `teosinte` and used `awk` and `for loop` to subset the data per chromosome both in increasing and decreasing orders as follows:
 
-```mkdir teosinte
+```
+mkdir teosinte
 ```
 
 ```
@@ -296,4 +303,4 @@ head -n 3 teosinte/teosinte_snp_with_multiple_position.txt | cut -f 1-7 | column
 
 ```
 head -n 3 teosinte/teosinte_snp_with_unknown_position.txt | cut -f 1-7 | column -t
-```# Boris_Unix_Assignment
+```
