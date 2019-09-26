@@ -100,14 +100,16 @@ head snp_formatted_position.txt | column -t
 ```
 
 
-###Maize Data
+###Maize Data  
+
 Coming the `fang_et_al_genotypes.txt`, I first had a look at how many distinct groups of individuals we have and their frequencies of appearance. 
 
 ```
 sort -k3 fang_et_al_genotypes.txt | cut -f 3 | uniq -c | column -t
 ```
 
-#####Filter, transpose and sort
+#####Filter, transpose and sort  
+
 Next, I filtered out rows of the three target groups of maize, transposed and sorted the data by `snp_id` while always keeping the header in the first row.
 
 ```
@@ -151,7 +153,8 @@ head sorted_transposed_maize_genotypes.txt | cut -f 1-10 | column -t
 ```
 tail -n +2 sorted_transposed_maize_genotypes.txt | sort -c -k1,1 
 ```
-#####Merging snp and genotypes
+#####Merging snp and genotypes  
+
 After all the files have been checked, I used `join` merged the snp_position and genotypes files for maize. Here, the code merged the files by their first columns while specifying that first row of each file is the header.
 
 ```
@@ -187,7 +190,8 @@ awk '$3 ~ /unknown|Position/' joined_maize_snp_and_genotypes.txt > maize/maize_s
 ```
 awk '$3 ~ /multiple|Position/' joined_maize_snp_and_genotypes.txt > maize/maize_snp_with_multiple_position.txt
 ```
-#####Final inspection
+#####Final inspection  
+
 Finally, I did a quick inspection of all the 22 files generated for teosinte.
 ```
 for i in {1..10}; do head -n 3 maize/maize_chr"$i"_increasing.txt | cut -f 1-7 | column -t; done
@@ -207,7 +211,8 @@ head -n 3 maize/maize_snp_with_unknown_position.txt | cut -f 1-7 | column -t
 
 ###Teosinte Data
 
-#####Filter, transposition and sort
+#####Filter, transposition and sort  
+
 Just like for maize, I filtered out the three groups of interest in teosinte, transposed, sorted and inspected all the files.
 
 ```
@@ -235,7 +240,8 @@ head teosinte_genotypes.txt | awk -F "\t" '{print NF; exit}
 ```cut -f 3 maize_genotypes.txt | sort | uniq -c
 ```
 
-#####Merging the files
+#####Merging the files  
+
 Next, I merged and sorted the snp_position and genotypes files. 
 
 ```
@@ -254,31 +260,40 @@ Afterwards, I created a directory `teosinte` and used `awk` and `for loop` to su
 ```mkdir teosinte
 ```
 
-```for i in {1..10}; do (head -n 1 joined_teosinte_only_numeric_position.txt && awk '$2 == '$i'' joined_teosinte_only_numeric_position.txt | sort -k3,3n) > teosinte/teosinte_chr"$i"_increasing.txt; done
+```
+for i in {1..10}; do (head -n 1 joined_teosinte_only_numeric_position.txt && awk '$2 == '$i'' joined_teosinte_only_numeric_position.txt | sort -k3,3n) > teosinte/teosinte_chr"$i"_increasing.txt; done
 ```
 
-```for i in {1..10}; do (head -n 1 joined_teosinte_only_numeric_position.txt && awk '$2 == '$i'' joined_teosinte_only_numeric_position.txt | sort -k3,3nr | sed 's/?/-/g') > teosinte/teosinte_chr"$i"_decreasing.txt; done
+```
+for i in {1..10}; do (head -n 1 joined_teosinte_only_numeric_position.txt && awk '$2 == '$i'' joined_teosinte_only_numeric_position.txt | sort -k3,3nr | sed 's/?/-/g') > teosinte/teosinte_chr"$i"_decreasing.txt; done
 ```
 
 Again, I used `awk` to subset the data for snp with unknown and multiple position.
 
-```awk '$3 ~ /unknown|Position/' joined_teosinte_snp_and_genotypes.txt > teosinte/teosinte_snp_with_unknown_position.txt
+```
+awk '$3 ~ /unknown|Position/' joined_teosinte_snp_and_genotypes.txt > teosinte/teosinte_snp_with_unknown_position.txt
 ```
 
-```awk '$3 ~ /multiple|Position/' joined_teosinte_snp_and_genotypes.txt > teosinte/teosinte_snp_with_multiple_position.txt
+```
+awk '$3 ~ /multiple|Position/' joined_teosinte_snp_and_genotypes.txt > teosinte/teosinte_snp_with_multiple_position.txt
 ```
 
-#####Final inspection
+#####Final inspection  
+
 Finally, I did inspect all the 22 files generated for teosinte.
 
-```for i in {1..10}; do head -n 3 teosinte/teosinte_chr"$i"_increasing.txt | cut -f 1-7 | column -t; done
+```
+for i in {1..10}; do head -n 3 teosinte/teosinte_chr"$i"_increasing.txt | cut -f 1-7 | column -t; done
 ```
 
-```for i in {1..10}; do head -n 3 teosinte/teosinte_chr"$i"_decreasing.txt | cut -f 1-7 | column -t; done
+```
+for i in {1..10}; do head -n 3 teosinte/teosinte_chr"$i"_decreasing.txt | cut -f 1-7 | column -t; done
 ```
 
-```head -n 3 teosinte/teosinte_snp_with_multiple_position.txt | cut -f 1-7 | column -t
+```
+head -n 3 teosinte/teosinte_snp_with_multiple_position.txt | cut -f 1-7 | column -t
 ```
 
-```head -n 3 teosinte/teosinte_snp_with_unknown_position.txt | cut -f 1-7 | column -t
+```
+head -n 3 teosinte/teosinte_snp_with_unknown_position.txt | cut -f 1-7 | column -t
 ```# Boris_Unix_Assignment
