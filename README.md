@@ -285,7 +285,7 @@ awk '$3 ~ /unknown|Position/' joined_teosinte_snp_and_genotypes.txt > teosinte/t
 awk '$3 ~ /multiple|Position/' joined_teosinte_snp_and_genotypes.txt > teosinte/teosinte_snp_with_multiple_position.txt
 ```
 
-#####Final inspection  
+#####Final inspection   
 
 Finally, I did inspect all the 22 files generated for teosinte.
 
