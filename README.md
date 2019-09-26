@@ -260,7 +260,8 @@ Similar to maize, I used `awk` to crop out all the rows with unknown and multipl
 awk '$3 !~ /unknown|multiple/' joined_teosinte_snp_and_genotypes.txt > joined_teosinte_only_numeric_position.txt
 ```
 
-#####Subsetting files per chromosome and position
+#####Subsetting files per chromosome and position  
+
 Afterwards, I created a directory `teosinte` and used `awk` and `for loop` to subset the data per chromosome both in increasing and decreasing orders as follows:
 
 ```
