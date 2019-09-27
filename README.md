@@ -304,4 +304,6 @@ head -n 3 teosinte/teosinte_snp_with_multiple_position.txt | cut -f 1-7 | column
 
 ```
 head -n 3 teosinte/teosinte_snp_with_unknown_position.txt | cut -f 1-7 | column -t
-```
+```  
+
+End of the assignment
